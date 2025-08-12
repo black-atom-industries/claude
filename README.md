@@ -13,6 +13,16 @@ git clone https://github.com/black-atom-industries/claude.git .claude
 
 **Important**: The repository must be cloned as `.claude` (note the dot prefix) in the root of your Black Atom Industries organization directory.
 
+### CLAUDE.md Setup
+
+After cloning, copy the main project documentation to the organization root where Claude Code can find it:
+
+```bash
+cp /Users/nbr/repos/black-atom-industries/.claude/CLAUDE.md /Users/nbr/repos/black-atom-industries/CLAUDE.md
+```
+
+This file contains the main project instructions and must be at the organization root for Claude Code to pick it up automatically.
+
 ## Directory Structure
 
 ```
@@ -35,32 +45,7 @@ git clone https://github.com/black-atom-industries/claude.git .claude
 
 ## Available Slash Commands
 
-### `/adapter:update-theme-name`
-
-Updates theme names across all Black Atom adapter repositories.
-
-**Usage**: `/adapter:update-theme-name <old-name> <new-name>`
-
-**Example**: `/adapter:update-theme-name blue mikado`
-
-This command:
-- Updates `black-atom-adapter.json` files in all adapter repositories
-- Renames theme files where they exist
-- Updates require paths in nvim color files
-- Commits changes with consistent messaging
-
-### `/org:commit`
-
-Commits changes across all Black Atom Industries repositories with consistent messaging.
-
-**Usage**: `/org:commit <message>`
-
-**Example**: `/org:commit "refactor(themes): rename mnml blue themes to mikado"`
-
-This command:
-- Checks all repositories for uncommitted changes
-- Stages and commits changes with the provided message
-- Reports status of each repository
+See the individual command files in the `commands/` directory for detailed documentation on usage, examples, and implementation details.
 
 ## Configuration
 
