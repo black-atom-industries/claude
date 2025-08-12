@@ -1,121 +1,46 @@
 # Black Atom Industries Organization Guide
 
-## Handover Note
-
-Hello future Claude!
-
-This guide was created after completing the migration of all theme collections (JPN, Stations, Terra, and Crbn) from Lua to TypeScript in the core repository. The user, Nik, has been working on establishing the core repository as the single source of truth for all theme definitions and implementing the adapter pattern across different platform repositories.
-
-Some key accomplishments so far:
-
-- All theme collections have been migrated to TypeScript
-- The core CLI tool can generate platform-specific files using the adapter pattern
-- The primaries array has been standardized to 12 colors across all themes
-- Shared UI and syntax components have been created for each collection
-
-## Current Status (Last Updated: March 30, 2025)
-
-### Completed Work
-
-- All theme collections have been migrated to TypeScript in the core
-- The core CLI is working correctly and can generate theme files
-- The Neovim adapter has been fully templated for all collections
-- The Ghostty adapter has been fully templated for all collections
-- The Zed adapter has templates for all collections
-- The WezTerm adapter has been fully templated for all collections
-- Basic project documentation has been created for all repositories
-- Primary structure in all theme collections has been updated to use semantic ranges (d10-d40, m10-m40, l10-l40)
-- Updated Neovim templates for all collections (JPN, Stations, Terra, CRBN) to match the new primaries structure
-- Created ADAPTER_DEVELOPMENT.md in the core repository with detailed guidelines
-- Updated the adapter-template repository with better documentation and examples
-- Created EXAMPLES.md in the adapter-template repo with various template format examples
-- Established the best practice of never accessing primaries directly in templates
-
-### In Progress
-
-- Testing and refining the generated themes across platforms
-- Enhancing documentation for developers and users
-- Standardizing adapter patterns across all platforms
-
-## Todo
-
-Detailed project, tasks and issues are tracked in [Linear Black Atom Industries Team](https://linear.app/black-atom-industries/settings/teams/DEV). Ask about its content if you are unsure about its contents.
-
-The current projects are:
-
-- [Black Atom - 1.0](https://linear.app/black-atom-industries/project/black-atom-10-178d009411e9)
-- [Black Atom - Core Creator](https://linear.app/black-atom-industries/project/black-atom-core-creator-ef001eff6075)
-
-These are more general high-level overview of the project's todos:
-
-Always ask Nik about the current state of tasks in his linear board.
-
-Nik appreciates thorough examination of code, clear explanations, and proactive suggestions for improvements. When working on theme-related tasks, be sure to follow the established patterns and maintain consistency with existing code.
-
 ## Project Overview
 
-Black Atom Industries is a collection of cohesive, elegant dark/light themes for various applications and platforms. The themes are organized into collections (jpn, stations, terra, crbn), each with distinctive visual styles and color palettes.
+Black Atom Industries is a collection of cohesive, elegant dark/light themes for various applications and platforms. The themes are organized into collections, each with distinctive visual styles and color palettes.
 
 ## Repository Structure
 
-- **core**: Central source of truth for theme definitions
+All repositories in the organization can be found at: https://github.com/orgs/black-atom-industries/repositories
 
-  - Contains TypeScript definitions for all theme collections
+### Key Repositories
+
+- **core**: Central source of truth for theme definitions and CLI tool
+
+  - Contains TypeScript definitions for all theme collections  
   - Provides a CLI tool for generating theme files for various platforms
   - Uses an adapter pattern to generate platform-specific files
 
-- **nvim**: Neovim theme plugin
-
-  - Contains Lua theme implementations
-  - Uses an adapter to generate themes from core definitions
-
-- **ghostty**: Ghostty terminal theme
-
-  - Contains theme files for the Ghostty terminal
-  - Uses an adapter to generate themes from core definitions
-
-- **zed**: Zed editor theme
-
-  - Contains theme files for the Zed code editor
-  - Uses an adapter to generate themes from core definitions
-
-- **wezterm**: WezTerm terminal theme
-
-  - Contains TOML theme files for the WezTerm terminal
-  - Uses an adapter to generate themes from core definitions
-
-- **obsidian**: Obsidian theme
-  - Contains CSS-based theme for Obsidian note-taking app
+- **Adapter repositories**: Platform-specific theme implementations
+  - Each adapter repository contains platform-specific theme files
+  - Generated from core definitions using the adapter pattern
+  - See organization repositories page for complete list
 
 ## Theme Collections
 
-1. **JPN**: Japanese-inspired themes
+Theme collections are organized by concept and aesthetic. Each collection contains multiple theme variants with different color palettes and appearances (dark/light).
 
-   - black-atom-jpn-koyo-yoru: Autumn evening theme
-   - black-atom-jpn-koyo-hiru: Autumn daytime theme
-   - black-atom-jpn-tsuki-yoru: Moonlit night theme
+**Current collections can be discovered by exploring**: `core/src/themes/`
 
-2. **Stations**: Space station-inspired themes
+Each collection directory contains:
+- Individual theme definition files  
+- Shared UI components (`ui_dark.ts`, `ui_light.ts`)
+- Shared syntax highlighting (`syntax_dark.ts`, `syntax_light.ts`)
 
-   - black-atom-stations-engineering: Engineering station (dark)
-   - black-atom-stations-operations: Operations station (dark)
-   - black-atom-stations-medical: Medical station (light)
-   - black-atom-stations-research: Research station (light)
+## Project Status & Tasks
 
-3. **Terra**: Earth seasons-inspired themes
+For current project status, active tasks, and roadmap, see the [Linear Black Atom Industries Team](https://linear.app/black-atom-industries/settings/teams/DEV).
 
-   - black-atom-terra-spring-day: Spring daytime (light)
-   - black-atom-terra-spring-night: Spring evening (dark)
-   - black-atom-terra-summer-day: Summer daytime (light)
-   - black-atom-terra-summer-night: Summer evening (dark)
-   - black-atom-terra-fall-day: Fall daytime (light)
-   - black-atom-terra-fall-night: Fall evening (dark)
-   - black-atom-terra-winter-day: Winter daytime (light)
-   - black-atom-terra-winter-night: Winter evening (dark)
-
-4. **Crbn**: Carbon-inspired minimal themes
-   - black-atom-crbn-null: Minimalist dark theme
-   - black-atom-crbn-supr: Minimalist light theme
+**Development principles:**
+- Maintain core as the single source of truth for theme definitions
+- Follow established patterns and maintain consistency  
+- Test themes across all platforms after changes
+- Use the adapter pattern for platform-specific implementations
 
 ## Core Architecture
 
@@ -223,47 +148,18 @@ These prompts include detailed testing instructions for verifying themes across 
 
 ## Commands & Tools
 
-### Core Repository
+### Core Repository Commands
 
-```bash
-# Install global CLI
-deno task install
+For complete list of available commands and their descriptions:
+- **Core repository**: See `core/CLAUDE.md` for detailed command documentation
+- **Deno tasks**: Run `deno task` in the core directory to see all available tasks
+- **CLI help**: Run `black-atom-core help` for CLI command documentation
 
-# Compile binary
-deno task compile
+### Development Workflow
 
-# Run typecheck
-deno task check
-
-# Format code
-deno task format
-
-# Lint code
-deno task lint
-
-# Generate schema
-deno task schema
-
-# Update dependencies
-deno task lock
-
-# Adapt themes in adapter repository
-black-atom-core adapt
-
-# Adapt all repositories from core
-deno task dev:adapters:adapt
-```
-
-### Adapter Testing
-
-```bash
-# Testing adapter generation from core
-cd /Users/nbr/repos/black-atom-industries/core
-deno task dev:adapters:adapt
-
-# Test a specific adapter only
-black-atom-core adapt wezterm
-```
+1. **Theme development**: Work in `core/src/themes/`
+2. **Adapter testing**: Use `deno task adapters:gen` to generate all adapters  
+3. **Cross-platform verification**: Test generated themes in respective applications
 
 ## Token System Reference
 
